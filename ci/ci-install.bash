@@ -46,8 +46,8 @@ fi
 
 install-vcddiff() {
   TMP_DIR="$(mktemp -d)"
-  git clone https://github.com/veripool/vcddiff "$TMP_DIR"
-  git -C "${TMP_DIR}" checkout dca845020668887fd13498c772939814d9264fd5
+  git clone https://github.com/toddstrader/vcddiff.git "$TMP_DIR"
+  git -C "${TMP_DIR}" checkout var-after-upscope
   "$MAKE" -C "${TMP_DIR}"
   sudo cp "${TMP_DIR}/vcddiff" /usr/local/bin
 }
