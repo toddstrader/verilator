@@ -2302,8 +2302,7 @@ class ParamVisitor final : public VNVisitor {
                 bool hasUnresolvedLparamXRef = false;
                 nodep->valuep()->foreach([&](const AstVarXRef* xrefp) {
                     if (const AstVar* const varp = xrefp->varp()) {
-                        if (varp->varType() == VVarType::LPARAM
-                            && !VN_IS(varp->valuep(), Const)) {
+                        if (varp->varType() == VVarType::LPARAM && !VN_IS(varp->valuep(), Const)) {
                             hasUnresolvedLparamXRef = true;
                         }
                     }
