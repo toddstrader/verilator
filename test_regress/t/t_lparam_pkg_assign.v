@@ -12,16 +12,23 @@ package pkg;
   endfunction
 endpackage
 
-interface ifc();
+interface ifc #(parameter type some_type) ();
   localparam int PARAM = 1;
+  localparam int TYPE_WIDTH = $bits(some_type);
 endinterface
+
+function automatic bit assert_func(bit value);
+    if (!value) $fatal(2, "DEAD");
+    return 0;
+endfunction
 
 module mod(ifc i);
   localparam bit lpbit = pkg::fn(i.PARAM);
+  localparam bit test = assert_func(i.TYPE_WIDTH == 32);
 endmodule
 
 module t;
-  ifc i();
+  ifc #(.some_type (int)) i ();
   mod m(.i);
 
   initial begin
