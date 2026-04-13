@@ -134,6 +134,7 @@ module sub #(
   logic_array_2_t the_other_logic_array;
   logic [15:0] the_unpacked_array [5];
   logic the_2d_unpacked [3][4];
+  string the_string_array [3:0];
 
   typedef logic [3:0] four_bit_t;
   typedef four_bit_t [1:0] two_fours_t;

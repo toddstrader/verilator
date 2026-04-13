@@ -794,6 +794,13 @@ class TraceDeclVisitor final : public VNVisitor {
             return;
         }
 
+        // Skip unpacked arrays of non-traceable leaf types (e.g. strings)
+        if (VN_IS(nodep->subDTypep()->skipRefToEnump(), BasicDType)
+            && nodep->subDTypep()->skipRefToEnump()->isString()) {
+            addIgnore("Unsupported: strings");
+            return;
+        }
+
         VL_RESTORER(m_skipDtypeFunc);
         VL_RESTORER(m_dtypeDeclp);
         if (isBasicIO()) m_skipDtypeFunc = true;

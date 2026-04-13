@@ -1,5 +1,5 @@
 $date
-Fri Apr 10 14:48:27 2026
+Mon Apr 13 14:47:24 2026
 
 $end
 $version
@@ -58,18 +58,6 @@ $end
        $var wire 1 8 out_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array out_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 5 $end
      $scope struct data $end
       $var wire 1 9 foo $end
@@ -87,15 +75,6 @@ $end
        $var wire 1 @ field_a $end
        $var wire 6 A field_b [5:0] $end
        $var wire 10 B field_c [9:0] $end
-      $upscope $end
-     $upscope $end
-     $attrbegin pack packed members 5 $end
-     $scope struct data $end
-      $attrbegin array packed bounds 12884901888 $end
-      $scope sv_array bar $end
-      $upscope $end
-      $attrbegin pack packed members 3 $end
-      $scope struct sub_struct $end
       $upscope $end
      $upscope $end
      $var wire 32 ( cyc [31:0] $end
@@ -198,45 +177,6 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 12884901888 $end
-     $scope sv_array the_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [3] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 8589934592 $end
      $scope sv_array the_packed_structs $end
       $attrbegin pack packed members 5 $end
@@ -297,44 +237,11 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array packed bounds 8589934592 $end
-     $scope sv_array the_packed_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct the_local_struct $end
       $var logic 1 +! abc $end
       $var logic 1 ,! def $end
       $var logic 1 -! xyz $end
-     $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_local_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct const_struct $end
@@ -348,17 +255,11 @@ $end
       $var logic 1 /! def $end
       $var logic 1 0! xyz $end
      $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_typedefed_struct $end
-     $upscope $end
      $attrbegin pack unpacked members 3 $end
      $scope struct the_local_unpacked_struct $end
       $var logic 1 1! field_a $end
       $var logic 1 2! field_b $end
       $var logic 1 3! field_c $end
-     $upscope $end
-     $attrbegin pack unpacked members 3 $end
-     $scope struct the_local_unpacked_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope union the_local_union $end
@@ -383,15 +284,9 @@ $end
       $var logic 32 :! the_logic_array[0] [31:0] $end
      $upscope $end
      $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_logic_array $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
      $scope sv_array the_other_logic_array $end
       $var logic 32 ;! the_other_logic_array[1] [31:0] $end
       $var logic 32 <! the_other_logic_array[0] [31:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_other_logic_array $end
      $upscope $end
      $attrbegin array unpacked bounds 4 $end
      $scope sv_array the_unpacked_array $end
@@ -400,9 +295,6 @@ $end
       $var logic 16 ?! the_unpacked_array[2] [15:0] $end
       $var logic 16 @! the_unpacked_array[3] [15:0] $end
       $var logic 16 A! the_unpacked_array[4] [15:0] $end
-     $upscope $end
-     $attrbegin array unpacked bounds 4 $end
-     $scope sv_array the_unpacked_array $end
      $upscope $end
      $attrbegin array unpacked bounds 2 $end
      $scope sv_array the_2d_unpacked $end
@@ -428,18 +320,6 @@ $end
        $var logic 1 M! the_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array the_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 4294967296 $end
      $scope sv_array two_fours $end
       $var parameter 4 N! two_fours[1] [3:0] $end
@@ -449,9 +329,6 @@ $end
      $scope sv_array two_fours_var $end
       $var logic 4 P! two_fours_var[1] [3:0] $end
       $var logic 4 Q! two_fours_var[0] [3:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array two_fours_var $end
      $upscope $end
     $upscope $end
    $upscope $end
@@ -485,18 +362,6 @@ $end
        $var wire 1 a! out_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array out_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 5 $end
      $scope struct data $end
       $var wire 1 b! foo $end
@@ -514,15 +379,6 @@ $end
        $var wire 1 i! field_a $end
        $var wire 6 j! field_b [5:0] $end
        $var wire 10 k! field_c [9:0] $end
-      $upscope $end
-     $upscope $end
-     $attrbegin pack packed members 5 $end
-     $scope struct data $end
-      $attrbegin array packed bounds 12884901888 $end
-      $scope sv_array bar $end
-      $upscope $end
-      $attrbegin pack packed members 3 $end
-      $scope struct sub_struct $end
       $upscope $end
      $upscope $end
      $var wire 32 R! cyc [31:0] $end
@@ -625,45 +481,6 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 12884901888 $end
-     $scope sv_array the_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [3] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 8589934592 $end
      $scope sv_array the_packed_structs $end
       $attrbegin pack packed members 5 $end
@@ -724,44 +541,11 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array packed bounds 8589934592 $end
-     $scope sv_array the_packed_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct the_local_struct $end
       $var logic 1 T" abc $end
       $var logic 1 U" def $end
       $var logic 1 V" xyz $end
-     $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_local_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct const_struct $end
@@ -775,17 +559,11 @@ $end
       $var logic 1 X" def $end
       $var logic 1 Y" xyz $end
      $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_typedefed_struct $end
-     $upscope $end
      $attrbegin pack unpacked members 3 $end
      $scope struct the_local_unpacked_struct $end
       $var logic 1 Z" field_a $end
       $var logic 1 [" field_b $end
       $var logic 1 \" field_c $end
-     $upscope $end
-     $attrbegin pack unpacked members 3 $end
-     $scope struct the_local_unpacked_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope union the_local_union $end
@@ -810,15 +588,9 @@ $end
       $var logic 32 c" the_logic_array[0] [31:0] $end
      $upscope $end
      $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_logic_array $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
      $scope sv_array the_other_logic_array $end
       $var logic 32 d" the_other_logic_array[1] [31:0] $end
       $var logic 32 e" the_other_logic_array[0] [31:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_other_logic_array $end
      $upscope $end
      $attrbegin array unpacked bounds 4 $end
      $scope sv_array the_unpacked_array $end
@@ -827,9 +599,6 @@ $end
       $var logic 16 h" the_unpacked_array[2] [15:0] $end
       $var logic 16 i" the_unpacked_array[3] [15:0] $end
       $var logic 16 j" the_unpacked_array[4] [15:0] $end
-     $upscope $end
-     $attrbegin array unpacked bounds 4 $end
-     $scope sv_array the_unpacked_array $end
      $upscope $end
      $attrbegin array unpacked bounds 2 $end
      $scope sv_array the_2d_unpacked $end
@@ -855,18 +624,6 @@ $end
        $var logic 1 v" the_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array the_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 4294967296 $end
      $scope sv_array two_fours $end
       $var parameter 4 N! two_fours[1] [3:0] $end
@@ -876,9 +633,6 @@ $end
      $scope sv_array two_fours_var $end
       $var logic 4 w" two_fours_var[1] [3:0] $end
       $var logic 4 x" two_fours_var[0] [3:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array two_fours_var $end
      $upscope $end
     $upscope $end
    $upscope $end
@@ -912,18 +666,6 @@ $end
        $var wire 1 *# out_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array out_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 5 $end
      $scope struct data $end
       $var wire 1 +# foo $end
@@ -941,15 +683,6 @@ $end
        $var wire 1 2# field_a $end
        $var wire 6 3# field_b [5:0] $end
        $var wire 10 4# field_c [9:0] $end
-      $upscope $end
-     $upscope $end
-     $attrbegin pack packed members 5 $end
-     $scope struct data $end
-      $attrbegin array packed bounds 12884901888 $end
-      $scope sv_array bar $end
-      $upscope $end
-      $attrbegin pack packed members 3 $end
-      $scope struct sub_struct $end
       $upscope $end
      $upscope $end
      $var wire 32 y" cyc [31:0] $end
@@ -1052,45 +785,6 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 12884901888 $end
-     $scope sv_array the_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [3] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 8589934592 $end
      $scope sv_array the_packed_structs $end
       $attrbegin pack packed members 5 $end
@@ -1151,44 +845,11 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array packed bounds 8589934592 $end
-     $scope sv_array the_packed_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct the_local_struct $end
       $var logic 1 {# abc $end
       $var logic 1 |# def $end
       $var logic 1 }# xyz $end
-     $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_local_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct const_struct $end
@@ -1202,17 +863,11 @@ $end
       $var logic 1 !$ def $end
       $var logic 1 "$ xyz $end
      $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_typedefed_struct $end
-     $upscope $end
      $attrbegin pack unpacked members 3 $end
      $scope struct the_local_unpacked_struct $end
       $var logic 1 #$ field_a $end
       $var logic 1 $$ field_b $end
       $var logic 1 %$ field_c $end
-     $upscope $end
-     $attrbegin pack unpacked members 3 $end
-     $scope struct the_local_unpacked_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope union the_local_union $end
@@ -1237,15 +892,9 @@ $end
       $var logic 32 ,$ the_logic_array[0] [31:0] $end
      $upscope $end
      $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_logic_array $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
      $scope sv_array the_other_logic_array $end
       $var logic 32 -$ the_other_logic_array[1] [31:0] $end
       $var logic 32 .$ the_other_logic_array[0] [31:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_other_logic_array $end
      $upscope $end
      $attrbegin array unpacked bounds 4 $end
      $scope sv_array the_unpacked_array $end
@@ -1254,9 +903,6 @@ $end
       $var logic 16 1$ the_unpacked_array[2] [15:0] $end
       $var logic 16 2$ the_unpacked_array[3] [15:0] $end
       $var logic 16 3$ the_unpacked_array[4] [15:0] $end
-     $upscope $end
-     $attrbegin array unpacked bounds 4 $end
-     $scope sv_array the_unpacked_array $end
      $upscope $end
      $attrbegin array unpacked bounds 2 $end
      $scope sv_array the_2d_unpacked $end
@@ -1282,18 +928,6 @@ $end
        $var logic 1 ?$ the_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array the_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 4294967296 $end
      $scope sv_array two_fours $end
       $var parameter 4 N! two_fours[1] [3:0] $end
@@ -1303,9 +937,6 @@ $end
      $scope sv_array two_fours_var $end
       $var logic 4 @$ two_fours_var[1] [3:0] $end
       $var logic 4 A$ two_fours_var[0] [3:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array two_fours_var $end
      $upscope $end
     $upscope $end
    $upscope $end
@@ -1339,18 +970,6 @@ $end
        $var wire 1 Q$ out_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array out_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 5 $end
      $scope struct data $end
       $var wire 1 R$ foo $end
@@ -1368,15 +987,6 @@ $end
        $var wire 1 Y$ field_a $end
        $var wire 6 Z$ field_b [5:0] $end
        $var wire 10 [$ field_c [9:0] $end
-      $upscope $end
-     $upscope $end
-     $attrbegin pack packed members 5 $end
-     $scope struct data $end
-      $attrbegin array packed bounds 12884901888 $end
-      $scope sv_array bar $end
-      $upscope $end
-      $attrbegin pack packed members 3 $end
-      $scope struct sub_struct $end
       $upscope $end
      $upscope $end
      $var wire 32 B$ cyc [31:0] $end
@@ -1479,45 +1089,6 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 12884901888 $end
-     $scope sv_array the_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [3] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 8589934592 $end
      $scope sv_array the_packed_structs $end
       $attrbegin pack packed members 5 $end
@@ -1578,44 +1149,11 @@ $end
        $upscope $end
       $upscope $end
      $upscope $end
-     $attrbegin array packed bounds 8589934592 $end
-     $scope sv_array the_packed_structs $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [2] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [1] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-      $attrbegin pack packed members 5 $end
-      $scope struct [0] $end
-       $attrbegin array packed bounds 12884901888 $end
-       $scope sv_array bar $end
-       $upscope $end
-       $attrbegin pack packed members 3 $end
-       $scope struct sub_struct $end
-       $upscope $end
-      $upscope $end
-     $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct the_local_struct $end
       $var logic 1 D% abc $end
       $var logic 1 E% def $end
       $var logic 1 F% xyz $end
-     $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_local_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope struct const_struct $end
@@ -1629,17 +1167,11 @@ $end
       $var logic 1 H% def $end
       $var logic 1 I% xyz $end
      $upscope $end
-     $attrbegin pack packed members 3 $end
-     $scope struct the_typedefed_struct $end
-     $upscope $end
      $attrbegin pack unpacked members 3 $end
      $scope struct the_local_unpacked_struct $end
       $var logic 1 J% field_a $end
       $var logic 1 K% field_b $end
       $var logic 1 L% field_c $end
-     $upscope $end
-     $attrbegin pack unpacked members 3 $end
-     $scope struct the_local_unpacked_struct $end
      $upscope $end
      $attrbegin pack packed members 3 $end
      $scope union the_local_union $end
@@ -1664,15 +1196,9 @@ $end
       $var logic 32 S% the_logic_array[0] [31:0] $end
      $upscope $end
      $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_logic_array $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
      $scope sv_array the_other_logic_array $end
       $var logic 32 T% the_other_logic_array[1] [31:0] $end
       $var logic 32 U% the_other_logic_array[0] [31:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array the_other_logic_array $end
      $upscope $end
      $attrbegin array unpacked bounds 4 $end
      $scope sv_array the_unpacked_array $end
@@ -1681,9 +1207,6 @@ $end
       $var logic 16 X% the_unpacked_array[2] [15:0] $end
       $var logic 16 Y% the_unpacked_array[3] [15:0] $end
       $var logic 16 Z% the_unpacked_array[4] [15:0] $end
-     $upscope $end
-     $attrbegin array unpacked bounds 4 $end
-     $scope sv_array the_unpacked_array $end
      $upscope $end
      $attrbegin array unpacked bounds 2 $end
      $scope sv_array the_2d_unpacked $end
@@ -1709,18 +1232,6 @@ $end
        $var logic 1 f% the_2d_unpacked[2][3] $end
       $upscope $end
      $upscope $end
-     $attrbegin array unpacked bounds 2 $end
-     $scope sv_array the_2d_unpacked $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [0] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [1] $end
-      $upscope $end
-      $attrbegin array unpacked bounds 3 $end
-      $scope sv_array [2] $end
-      $upscope $end
-     $upscope $end
      $attrbegin array packed bounds 4294967296 $end
      $scope sv_array two_fours $end
       $var parameter 4 N! two_fours[1] [3:0] $end
@@ -1730,9 +1241,6 @@ $end
      $scope sv_array two_fours_var $end
       $var logic 4 g% two_fours_var[1] [3:0] $end
       $var logic 4 h% two_fours_var[0] [3:0] $end
-     $upscope $end
-     $attrbegin array packed bounds 4294967296 $end
-     $scope sv_array two_fours_var $end
      $upscope $end
     $upscope $end
    $upscope $end
@@ -1744,9 +1252,6 @@ $end
      $var logic 8 j% data[2] [7:0] $end
      $var logic 8 k% data[1] [7:0] $end
      $var logic 8 l% data[0] [7:0] $end
-    $upscope $end
-    $attrbegin array packed bounds 12884901888 $end
-    $scope sv_array data $end
     $upscope $end
     $var int 32 m% data_typed [31:0] $end
    $upscope $end
