@@ -15,6 +15,7 @@ test.compile(verilator_flags2=["--trace-vcd", "--trace-structs", "--output-split
 
 if test.vlt_all:
     test.file_grep_count(test.obj_dir + "/V" + test.name + "__Trace__0.cpp",
+                         # dtype sub funcs prevent trace_chg splitting, but --vltmt still forces three of them
                          r'void Vt.*trace_chg_.*sub.*{', 3 if test.vltmt else 1)
 
 test.execute()

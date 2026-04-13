@@ -8,11 +8,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only OR Artistic-2.0
 
 import vltest_bootstrap
+import trace_var_kind_common
 
-test.scenarios("simulator_st")
+test.scenarios('vlt_all')
 
-test.compile(verilator_flags2=["--trace", "--trace-structs"])
-
-test.execute()
-
-test.passes()
+trace_var_kind_common.run(test)

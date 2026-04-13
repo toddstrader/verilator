@@ -8,11 +8,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only OR Artistic-2.0
 
 import vltest_bootstrap
+import trace_var_kind_common
 
-test.scenarios("vlt_all")
-test.top_filename = "t/t_trace_var_kind.v"
+test.scenarios('vlt_all')
 
-test.compile(verilator_flags2=["--cc", "--trace-vcd", "--trace-structs"])
-test.execute()
-test.trace_identical(test.trace_filename, test.golden_filename)
-test.passes()
+trace_var_kind_common.run(test)
