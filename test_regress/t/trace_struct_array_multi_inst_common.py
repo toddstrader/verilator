@@ -25,11 +25,8 @@ def _check_empty_scopes_vcd(test, vcd_filename):
             if scope_stack:
                 scope = scope_stack.pop()
                 if not scope["has_var"]:
-                    test.error(
-                        "Empty scope hierarchy: "
-                        + scope["name"]
-                        + " (no variables in scope or any child scopes)"
-                    )
+                    test.error("Empty scope hierarchy: " + scope["name"] +
+                               " (no variables in scope or any child scopes)")
         elif "$enddefinitions" in line:
             break
 
@@ -50,11 +47,8 @@ def _check_empty_scopes_saif(test, saif_filename):
         elif stripped == ")" and instance_stack:
             inst = instance_stack.pop()
             if not inst["has_net"]:
-                test.error(
-                    "Empty INSTANCE in SAIF: "
-                    + inst["name"]
-                    + " (no NET in instance or any child instances)"
-                )
+                test.error("Empty INSTANCE in SAIF: " + inst["name"] +
+                           " (no NET in instance or any child instances)")
 
 
 def run(test):
