@@ -169,6 +169,7 @@ class TraceVisitor final : public VNVisitor {
     //  Ast*::user4()                   // V3Hasher calculation
     // Cleared entire netlist
     //  AstCFunc::user1()               // V3GraphVertex* for this node
+    //  AstCFunc::user2()               // bool; func contains trace decls (needs splitting)
     //  AstTraceDecl::user1()           // V3GraphVertex* for this node
     //  AstTraceDecl::user2()           // dtype decl cannot be used for _chg
     //  AstVarScope::user1()            // V3GraphVertex* for this node
@@ -327,6 +328,57 @@ class TraceVisitor final : public VNVisitor {
                     declp->dtypeDeclp(nullptr);
                 }
             }
+        }
+    }
+
+    void splitTraceDeclFuncs() {
+        const int splitLimit = v3Global.opt.outputSplitCTrace() ? v3Global.opt.outputSplitCTrace()
+                                                                : std::numeric_limits<int>::max();
+        if (splitLimit == std::numeric_limits<int>::max()) return;
+
+        for (AstNode* nodep = m_topScopep->blocksp(); nodep; nodep = nodep->nextp()) {
+            AstCFunc* const funcp = VN_CAST(nodep, CFunc);
+            if (!funcp || !funcp->user2()) continue;
+
+            const string baseName = funcp->name();
+            uint32_t subNum = 1;
+            int curSize = 0;
+            AstCFunc* curFuncp = funcp;
+            std::vector<AstNodeStmt*> callStmts;
+
+            auto startNewSubFunc = [&]() {
+                FileLine* const flp = funcp->fileline();
+                const string newName = baseName + "_" + cvtToStr(subNum++);
+                AstCFunc* const newFuncp = new AstCFunc{flp, newName, m_topScopep};
+                newFuncp->argTypes(v3Global.opt.traceClassBase() + "* tracep");
+                newFuncp->isTrace(true);
+                newFuncp->isStatic(false);
+                newFuncp->isLoose(true);
+                newFuncp->slow(true);
+                newFuncp->dontCombine(true);
+                m_topScopep->addBlocksp(newFuncp);
+                newFuncp->addStmtsp(new AstCStmt{flp, "const int c = vlSymsp->__Vm_baseCode;"});
+                AstCCall* const callp = new AstCCall{flp, newFuncp};
+                callp->dtypeSetVoid();
+                callp->argTypes("tracep");
+                callStmts.push_back(callp->makeStmt());
+                curFuncp = newFuncp;
+                curSize = 0;
+            };
+
+            for (AstNode *stmtp = funcp->stmtsp(), *nextp; stmtp; stmtp = nextp) {
+                nextp = stmtp->nextp();
+                curSize += stmtp->nodeCount();
+
+                if (curFuncp != funcp) {
+                    stmtp->unlinkFrBack();
+                    curFuncp->addStmtsp(stmtp);
+                }
+
+                if (curSize > splitLimit && nextp) startNewSubFunc();
+            }
+
+            for (AstNodeStmt* const callStmtp : callStmts) { funcp->addStmtsp(callStmtp); }
         }
     }
 
@@ -991,6 +1043,7 @@ class TraceVisitor final : public VNVisitor {
         detectDuplicates();
 
         graphDtypePrune();
+        splitTraceDeclFuncs();
         m_graph.removeRedundantEdgesMax(&V3GraphEdge::followAlwaysTrue);
 
         // Simplify & optimize the graph
@@ -1130,6 +1183,7 @@ class TraceVisitor final : public VNVisitor {
             nodep->user1p(vertexp);
 
             UASSERT_OBJ(m_cfuncp, nodep, "Trace not under func");
+            m_cfuncp->user2(true);
             VL_RESTORER(m_tracep);
             m_tracep = nodep;
             iterateChildren(nodep);

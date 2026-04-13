@@ -298,9 +298,8 @@ class TraceDeclVisitor final : public VNVisitor {
             m_subFuncSize += stmtp->nodeCount();
             return;
         }
-        if (m_subFuncSize > m_funcSizeLimit || m_subFuncps.empty()) {
-            m_subFuncSize = 0;
-            //
+        // Defer trace splitting until V3Trace
+        if (m_subFuncps.empty()) {
             FileLine* const flp = m_currScopep->fileline();
             const string n = cvtToStr(m_subFuncps.size());
             const string name{"trace_init_sub__" + m_currScopep->nameDotless() + "__" + n};
@@ -584,7 +583,6 @@ class TraceDeclVisitor final : public VNVisitor {
         string prefixName(newFunc ? "name" : m_traName);
         int nMembers = 0;
         for (AstNode* mp = nodep->membersp(); mp; mp = mp->nextp()) ++nMembers;
-
         if (!nodep->packed()) {
             addToSubFunc(new AstTracePushPrefix{flp, prefixName,  //
                                                 VTracePrefixType::STRUCT_UNPACKED, nMembers, 0,
