@@ -46,7 +46,7 @@ if [ "$CI_BUILD_STAGE_NAME" = "build" ]; then
   if [ "$CI_DEV_GCOV" = 1 ]; then
     CONFIGURE_ARGS="$CONFIGURE_ARGS --enable-dev-gcov"
   fi
-  ./configure $CONFIGURE_ARGS --prefix="$INSTALL_DIR"
+  ./configure $CONFIGURE_ARGS  CXXFLAGS="-std=gnu++23" --prefix="$INSTALL_DIR"
   ccache -z
   "$MAKE" -j "$NPROC" -k
   # 22.04: ccache -s -v
