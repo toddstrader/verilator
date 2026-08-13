@@ -17,7 +17,7 @@ test.compile(
     make_main=False,
     make_pli=True,
     verilator_flags2=[
-        "--exe --vpi --timing --no-l2name --public-flat-rw",
+        "--exe --vpi --timing --no-l2name --public-flat-rw --dump-tree",
         test.pli_filename,
         "t/TestVpiMain.cpp",
     ],

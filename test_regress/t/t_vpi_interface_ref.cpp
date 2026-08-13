@@ -100,6 +100,16 @@ static void put_var(vpiHandle scope, const std::string& scopeName, const std::st
     vpi_put_value(vh, &value, NULL, vpiNoDelay);
 }
 
+static void check_name(vpiHandle handle, const std::string& what, const std::string& expected) {
+    const char* const got = vpi_get_str(vpiName, handle);
+    if (!got) {
+        check_failed("vpi_get_str(vpiName, " + what + ") = NULL, expected '" + expected + "'");
+    } else if (expected != got) {
+        check_failed("vpi_get_str(vpiName, " + what + ") = '" + got + "', expected '" + expected
+                     + "'");
+    }
+}
+
 static void check_defname(vpiHandle handle, const std::string& what, const std::string& expected) {
     const char* const got = vpi_get_str(vpiDefName, handle);
     if (!got) {
@@ -146,8 +156,11 @@ static vpiHandle concrete_of(vpiHandle refh, const std::string& what) {
     const std::string actWhat = "vpiActual of " + what;
     check_type(actualh, actWhat, vpiModport);
     check_fullname(actualh, actWhat, test_top() + ".concrete_intf.SomeModport");
-    // vpiDefName is asserted on the ref obj, not here: IEEE 1800-2023 37.15
-    // requires it there, while 37.7 gives a modport only vpiName
+    // IEEE 1800-2023 37.7 gives a modport vpiName
+    check_name(actualh, actWhat, "SomeModport");
+    // 37.15 requires vpiDefName on the ref obj rather than here, so check it
+    // is correct where offered rather than require it
+    if (vpi_get_str(vpiDefName, actualh)) check_defname(actualh, actWhat, "SomeModport");
     check_not_a_scope(actualh, actWhat);
 
     vpiHandle intfh = vpi_handle(vpiInterface, actualh);
@@ -196,7 +209,12 @@ static vpiHandle concrete_by_full_name(const std::string& refName) {
         check_failed("vpi_handle_by_name('" + refName + "') = NULL");
         return NULL;
     }
-    return concrete_of(refh, "'" + refName + "'");
+    // The reference names itself by its final component, but reports the
+    // fully qualified path it was found by
+    const std::string what = "'" + refName + "'";
+    check_name(refh, what, "intf_ref");
+    check_fullname(refh, what, refName);
+    return concrete_of(refh, what);
 }
 
 // vpi_handle_by_name() of just "intf_ref" relative to a handle for the
@@ -215,7 +233,9 @@ static vpiHandle concrete_by_relative_name(const std::string& scopeName) {
         check_failed("vpi_handle_by_name('intf_ref', <" + scopeName + ">) = NULL");
         return NULL;
     }
-    return concrete_of(refh, "'intf_ref' in '" + scopeName + "'");
+    const std::string what = "'intf_ref' in '" + scopeName + "'";
+    check_fullname(refh, what, scopeName + ".intf_ref");
+    return concrete_of(refh, what);
 }
 
 static int mon_check() {
@@ -284,6 +304,19 @@ static int mon_check() {
         }
     }
 
+    // vpiActual and vpiInterface only apply to a reference and a modport
+    // respectively; anything else yields NULL rather than a stray handle
+    {
+        const TestVpiHandle scopeh
+            = vpi_handle_by_name(const_cast<PLI_BYTE8*>(fooScope.c_str()), NULL);
+        if (scopeh) {
+            const TestVpiHandle actualh = vpi_handle(vpiActual, scopeh);
+            if (actualh) { check_failed("vpi_handle(vpiActual, <" + fooScope + ">) = non-NULL"); }
+            const TestVpiHandle intfh = vpi_handle(vpiInterface, scopeh);
+            if (intfh) { check_failed("vpi_handle(vpiInterface, <" + fooScope + ">) = non-NULL"); }
+        }
+    }
+
     // The interface must be enumerable by type from the scope containing it
     {
         const TestVpiHandle toph = vpi_handle_by_name(const_cast<PLI_BYTE8*>(top.c_str()), NULL);
@@ -291,6 +324,7 @@ static int mon_check() {
         if (!it) {
             check_failed("vpi_iterate(vpiInterface, <" + top + ">) = NULL");
         } else {
+            check_type(it, "vpi_iterate(vpiInterface, <" + top + ">)", vpiIterator);
             bool found = false;
             while (vpiHandle ih = vpi_scan(it)) {
                 const char* const fn = vpi_get_str(vpiFullName, ih);
